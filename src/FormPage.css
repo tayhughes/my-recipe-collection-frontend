@@ -1,0 +1,43 @@
+:root {
+    --black: #000000ce;
+    --blue: #4040b4;
+    --webpage-blue: #5b80bb;
+    --white: rgb(255, 255, 255);
+
+}
+
+form {
+    border: 1px solid var(--blue);
+    margin: 10px;
+    padding: 10px;
+    width: 300px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    width: auto;
+    padding: 0 10px;
+    margin-top: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input {
+    display: block;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    margin: 10px;
+    width: 220px;
+}
+
+input[type="submit"] {
+    display: block;
+    border: 1px solid var(--black);
+    width: 150px;
+    margin-left: 92px;
+    background-color: var(--webpage-blue);
+    padding: 5px;
+    margin-top: 30px;
+    color: var(--white);
+}
