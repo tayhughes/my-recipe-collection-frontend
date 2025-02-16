@@ -1,6 +1,11 @@
 import React, { useState } from "react";
 import './FormPage.css';
 
+const SERVER_IP_ADDRESS = 'http://192.168.1.168';
+const SERVER_PORT = '3001';
+const POST_REQ_PATH = '/submit-data-form';
+const SERVER_ADDRESS = `${SERVER_IP_ADDRESS}:${SERVER_PORT}${POST_REQ_PATH}`;
+
 function FormPage() {
     // State to store form data
     const [formData, setFormData] = useState({
@@ -23,7 +28,8 @@ function FormPage() {
     const handleSubmit = (event) => {
         event.preventDefault(); // Prevent the default form submission behavior
 
-        fetch("http://192.168.1.168:3001/submit-data-form", {
+        // fetch("http://192.168.1.168:3001/submit-data-form", {
+        fetch(SERVER_ADDRESS, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
