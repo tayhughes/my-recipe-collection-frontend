@@ -28,9 +28,10 @@ div#recipe-entry-container{
     border: 1px solid var(--black);
     border-radius: 10px;
     /* padding: 10px; */
+    padding-bottom: 10px;
     margin: 8px 10px;
     width: auto;
-    height: 90px;
+    height: fit-content;
 }
 
 div#recipe-entry-container h3{
