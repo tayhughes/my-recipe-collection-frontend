@@ -2,6 +2,7 @@ import React from 'react';
 import './RecipeList.css';
 import { useEffect, useState } from 'react';
 const SERVER_IP_ADDRESS = 'http://192.168.1.168';
+// const SERVER_IP_ADDRESS = 'http://192.168.0.11';
 const SERVER_PORT = '3001';
 const POST_REQ_PATH = '/data';
 const SERVER_ADDRESS = `${SERVER_IP_ADDRESS}:${SERVER_PORT}${POST_REQ_PATH}`;
@@ -10,8 +11,10 @@ function RecipeEntry({recipe_param}){
     return(
         <div id="recipe-entry-container">
             <h3>{recipe_param.name}</h3>
-            <p>Main Ingr: {recipe_param.main_ingredient}</p>
-            <p>Cuisines: {recipe_param.cuisine}</p>
+            <p>Cuisine: {recipe_param.cuisine}</p>
+            <p>Ingredients: {recipe_param.main_ingredient}</p>
+            <p>Instructions: ...coming soon</p>
+            
         </div>
     )
 }
