@@ -11,7 +11,7 @@ div#Recipe-Card-Page-Container {
     width: 850px;
     float: left;
     clear: none;
-    overflow: hidden;
+    overflow: scroll;
     background-color: var(--lightbluesteel);
 }
 
@@ -24,6 +24,8 @@ div#Recipe-Paper-View {
     min-height: 85vh;
     overflow-y: scroll;
     background-color: var(--paper-white);
+    margin-bottom: 30px;
+    padding-bottom: 50px;
 }
 
 div#Recipe-Card-Page-Container h2{
@@ -55,4 +57,16 @@ ul {
 ul li.recipe-card-list-item-ingr{
     list-style:disc;
     padding-top: 3px;
+}
+
+ol {
+    padding: 0;
+    width: 600px;
+    margin:0;
+    padding-left: 100px;
+}
+
+ol li.recipe-card-list-item-instruct{
+    padding-top: 3px;
+    margin-bottom: 10px;
 }

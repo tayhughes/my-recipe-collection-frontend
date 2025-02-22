@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import './RecipeCard.css';
 
-//const SERVER_IP_ADDRESS = 'http://192.168.1.168';
+const SERVER_IP_ADDRESS = 'http://192.168.1.168';
 //const SERVER_IP_ADDRESS = 'http://192.168.0.13';
-const SERVER_IP_ADDRESS = 'http://10.1.10.212';
+//const SERVER_IP_ADDRESS = 'http://10.1.10.212';
 const SERVER_PORT = '3001';
 const POST_REQ_PATH = '/recipe_id=';
 const SERVER_ADDRESS = `${SERVER_IP_ADDRESS}:${SERVER_PORT}${POST_REQ_PATH}`;
@@ -26,6 +26,27 @@ function ListIngredientsOrdered({recipe}){
     }
     return(
         <ul>{filteredIngredients}</ul>
+    );
+}
+
+function ListInstructionsOrdered({recipe}){
+    const filteredInstructions = [];
+    for(let i = 0; i < recipe.length; i++){
+        let bulletPoint = '';
+        for(let j = i; j < recipe.length; j++){
+            if(recipe[j] === ','){
+                i = j;
+                break;
+            }
+            else{
+                bulletPoint = `${bulletPoint}${recipe[j]}`;
+                i = j;
+            }
+        }
+        filteredInstructions.push(<li class="recipe-card-list-item-instruct">{bulletPoint}</li>);
+    }
+    return(
+        <ol>{filteredInstructions}</ol>
     );
 }
 
@@ -64,6 +85,9 @@ function RecipeCard({selectRecipe}){
                 <ListIngredientsOrdered
                     recipe={data[0].main_ingredient}/>
                 <h3>Instructions</h3>
+                <ListInstructionsOrdered
+                    recipe={data[0].main_instructions}
+                    />
             </div>
         </div>
     );
