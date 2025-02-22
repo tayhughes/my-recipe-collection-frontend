@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import './FormPage.css';
 
 
-//const SERVER_IP_ADDRESS = 'http://192.168.1.168';
+const SERVER_IP_ADDRESS = 'http://192.168.1.168';
 //const SERVER_IP_ADDRESS = 'http://192.168.0.13';
-const SERVER_IP_ADDRESS = 'http://10.1.10.212';
+//const SERVER_IP_ADDRESS = 'http://10.1.10.212';
 const SERVER_PORT = '3001';
 const POST_REQ_PATH = '/submit-data-form';
 const SERVER_ADDRESS = `${SERVER_IP_ADDRESS}:${SERVER_PORT}${POST_REQ_PATH}`;
@@ -27,13 +27,30 @@ const handleChangeIngredient = (event, indx, setFormData) => {
     });
 };
 
+const handleChangeInstruction = (event, indx, setFormData) => {
+    const { value } = event.target; // Use `name` to dynamically update the correct field
+    setFormData((prevFormData) => {
+        const updatedInstructions = [...prevFormData.main_instr];
+        updatedInstructions[indx] = value; // Update the specific index
+        return { ...prevFormData, main_instr: updatedInstructions };
+    });
+};
+
 const handleAddRow = (event, ingredientListRows, setIngredientListRows) => {
     const updatedValue = ingredientListRows + 1;
     setIngredientListRows(updatedValue);
 }
 
+const handleAddInstrRow = (event, numberOfInstructs, setNumberOfInstructs) => {
+    const updatedValue = numberOfInstructs + 1;
+    setNumberOfInstructs(updatedValue);
+}
+
 const handleSubtractRow = (event, setFormData, ingredientListRows, setIngredientListRows) => {
-    const updatedValue = ingredientListRows - 1;
+    let updatedValue = 1;
+    if(ingredientListRows > 1){
+        updatedValue = ingredientListRows - 1;
+    }
     setIngredientListRows(updatedValue);
     // let theListIngrCopy = [...formData.main_ingr];
     // theListIngrCopy.pop();
@@ -41,6 +58,19 @@ const handleSubtractRow = (event, setFormData, ingredientListRows, setIngredient
         const updateIngredient = [...prevFormData.main_ingr];
         updateIngredient.pop();
         return {...prevFormData, main_ingr: updateIngredient};
+    });
+}
+
+const handleSubtractInstrRow = (event, setFormData, numberOfInstructs, setNumberOfInstructs) => {
+    let updatedValue = 1;
+    if(numberOfInstructs > 1){
+        updatedValue = numberOfInstructs - 1;
+    }
+    setNumberOfInstructs(updatedValue);
+    setFormData((prevFormData) => {
+        const updateInstruction = [...prevFormData.main_instr];
+        updateInstruction.pop();
+        return {...prevFormData, main_instr: updateInstruction};
     });
 }
 
@@ -71,6 +101,7 @@ const handleSubmit = (event, setConfirmReceived, formData, setFormData) => {
         setFormData({
             food_name: "",
             main_ingr: [],
+            main_instr: [],
             cuisine_type: "",
         });
 };
@@ -78,16 +109,16 @@ const handleSubmit = (event, setConfirmReceived, formData, setFormData) => {
 function FoodNameTable({formData,setFormData}){
     return(
         <div>
-            <label htmlFor="food-name">Food Name</label>
             <input
                 type="text"
                 id="food-name"
                 name="food_name"
                 value={formData.food_name || ""}
                 onChange={(event) => handleChange(event,setFormData)}
-                placeholder="ex. Rosemary Red Potatoes"
+                placeholder='"Click Here to Add Recipe Title"'
                 required
             />
+            <p class="recipe-form-line-break"></p>
         </div>
     );
 }
@@ -96,10 +127,10 @@ function IngredientListRow({nthIngredient,formData,setFormData}){
     const theName = `main-ingr-${nthIngredient}`;
     const theID = `main-ingr-${nthIngredient}`;
     const theHTMLFor = `main-ingr-${nthIngredient}`;
-    const placeholderValue = `ex. Ingredient no. ${nthIngredient + 1}`
+    const placeholderValue = `"Click Here To Add Ingredient No. ${nthIngredient + 1}"`
     const Title = [];
     if(nthIngredient === 0){
-        Title.push(<label htmlFor={theHTMLFor}>Ingredients List</label>);
+        Title.push(<label class={theHTMLFor} htmlFor={theHTMLFor}>Ingredients</label>);
     }
     return(
         <div>
@@ -112,6 +143,33 @@ function IngredientListRow({nthIngredient,formData,setFormData}){
                 name={theName}
                 value={formData.main_ingr[nthIngredient] || ""}
                 onChange={(event) => handleChangeIngredient(event, nthIngredient, setFormData)}
+                placeholder={placeholderValue}
+                required
+            /> 
+        </div>
+    );
+}
+
+function InstructionListRow({nthInstruction, formData, setFormData}){
+    const theName = `main-instr-${nthInstruction}`;
+    const theID = `main-instr-${nthInstruction}`;
+    const theHTMLFor = `main-instr-${nthInstruction}`;
+    const placeholderValue = `"Click Here To Add Instruction No. ${nthInstruction + 1}"`
+    const Title = [];
+    if(nthInstruction === 0){
+        Title.push(<label class={theHTMLFor} htmlFor={theHTMLFor}>Instructions</label>);
+    }
+    return(
+        <div>
+            {Title}
+            <input
+                type="text"
+                id={theID}
+                // id="main-ingr-nthIngredient"
+                // name="main_ingr"
+                name={theName}
+                value={formData.main_instr[nthInstruction] || ""}
+                onChange={(event) => handleChangeInstruction(event, nthInstruction, setFormData)}
                 placeholder={placeholderValue}
                 required
             /> 
@@ -132,7 +190,25 @@ function IngredientListTable({numberOfRows,formData,setFormData}){
     }
 
     return(
-        <div>
+        <div class="list-of-items">
+            {rows}
+        </div>
+    );
+}
+
+function InstructionListTable({numberOfInstructs,formData,setFormData}){
+    const rows = [];
+    for(let indx = 0; indx < numberOfInstructs;indx++){
+        rows.push(
+            <InstructionListRow
+                nthInstruction={indx}
+                formData={formData}
+                setFormData={setFormData}
+            />
+        );
+    }
+    return(
+        <div class="list-of-items">
             {rows}
         </div>
     );
@@ -140,8 +216,8 @@ function IngredientListTable({numberOfRows,formData,setFormData}){
 
 function CuisineTypeTable({formData,setFormData}){
     return(
-        <div>
-            <label htmlFor="cuisine-type">Cuisine Type</label>
+        <div class="cuisine-type-container">
+            <label class="cuisine-type" htmlFor="cuisine-type">Cuisine Type</label>
             <input
                 type="text"
                 id="cuisine-type"
@@ -160,17 +236,18 @@ function FormPage() {
     const [formData, setFormData] = useState({
         food_name: "",
         main_ingr: [],
+        main_instr: [],
         cuisine_type: "",
     });
 
     const [confirmReceived, setConfirmReceived] = useState('');
     const [ingredientListRows,setIngredientListRows] = useState(1);
+    const [numberOfInstructs, setNumberOfInstructs] = useState(1);
 
     
         return (
             <div>
             <form onSubmit={(event) => handleSubmit(event, setConfirmReceived, formData, setFormData)}>
-                <h2>Recipe Collection</h2>
                 <FoodNameTable
                     formData={formData}
                     setFormData={setFormData}/>
@@ -179,26 +256,50 @@ function FormPage() {
                     numberOfRows={ingredientListRows}
                     formData={formData}
                     setFormData={setFormData}/>
+                <div id="add-ingr-row-button-container">
+                    <input 
+                        id="add-ingr-row-btn"
+                        class="add-subtract-row"
+                        type="button" 
+                        value="+" 
+                        onClick={(event) => handleAddRow(event, ingredientListRows, setIngredientListRows)}
+                    />
 
-                <input 
-                    id="add-ingr-row-btn"
-                    type="button" 
-                    value="+" 
-                    onClick={(event) => handleAddRow(event, ingredientListRows, setIngredientListRows)}
-                />
+                    <input 
+                        id="subtract-ingr-row-btn"
+                        class="add-subtract-row"
+                        type="button" 
+                        value="-" 
+                        onClick={(event) => handleSubtractRow(event, setFormData, ingredientListRows, setIngredientListRows)}
+                    />
+                </div>
 
-                <input 
-                    id="subtract-ingr-row-btn"
-                    type="button" 
-                    value="-" 
-                    onClick={(event) => handleSubtractRow(event, setFormData, ingredientListRows, setIngredientListRows)}
-                />
+                <InstructionListTable
+                    numberOfInstructs={numberOfInstructs}
+                    formData={formData}
+                    setFormData={setFormData}/>
+
+                <div id="add-instruct-row-button-container">
+                    <input 
+                        id="add-instr-row-btn"
+                        type="button" 
+                        value="+" 
+                        onClick={(event) => handleAddInstrRow(event, numberOfInstructs, setNumberOfInstructs)}
+                    />
+
+                    <input 
+                        id="subtract-instr-row-btn"
+                        type="button" 
+                        value="-" 
+                        onClick={(event) => handleSubtractInstrRow(event, setFormData, numberOfInstructs, setNumberOfInstructs)}
+                    />
+                </div>
 
                 <CuisineTypeTable
                     formData={formData}
                     setFormData={setFormData}/>
 
-                <input type="submit" value="Add Recipe"/>
+                <input type="submit" value="Save Recipe"/>
             </form>
             <p>{confirmReceived}</p>
             </div>
