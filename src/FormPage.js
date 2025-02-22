@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import './FormPage.css';
 
-const SERVER_IP_ADDRESS = 'http://192.168.1.168';
+
+//const SERVER_IP_ADDRESS = 'http://192.168.1.168';
+//const SERVER_IP_ADDRESS = 'http://192.168.0.13';
+const SERVER_IP_ADDRESS = 'http://10.1.10.212';
 const SERVER_PORT = '3001';
 const POST_REQ_PATH = '/submit-data-form';
 const SERVER_ADDRESS = `${SERVER_IP_ADDRESS}:${SERVER_PORT}${POST_REQ_PATH}`;
@@ -163,42 +166,44 @@ function FormPage() {
     const [confirmReceived, setConfirmReceived] = useState('');
     const [ingredientListRows,setIngredientListRows] = useState(1);
 
-    return (
-        <div>
-        <form onSubmit={(event) => handleSubmit(event, setConfirmReceived, formData, setFormData)}>
-            <h2>Recipe Collection</h2>
-            <FoodNameTable
-                formData={formData}
-                setFormData={setFormData}/>
-            
-            <IngredientListTable
-                numberOfRows={ingredientListRows}
-                formData={formData}
-                setFormData={setFormData}/>
+    
+        return (
+            <div>
+            <form onSubmit={(event) => handleSubmit(event, setConfirmReceived, formData, setFormData)}>
+                <h2>Recipe Collection</h2>
+                <FoodNameTable
+                    formData={formData}
+                    setFormData={setFormData}/>
 
-            <input 
-                id="add-ingr-row-btn"
-                type="button" 
-                value="+" 
-                onClick={(event) => handleAddRow(event, ingredientListRows, setIngredientListRows)}
-            />
+                <IngredientListTable
+                    numberOfRows={ingredientListRows}
+                    formData={formData}
+                    setFormData={setFormData}/>
 
-            <input 
-                id="subtract-ingr-row-btn"
-                type="button" 
-                value="-" 
-                onClick={(event) => handleSubtractRow(event, setFormData, ingredientListRows, setIngredientListRows)}
-            />
-            
-            <CuisineTypeTable
-                formData={formData}
-                setFormData={setFormData}/>
-            
-            <input type="submit" value="Add Recipe"/>
-        </form>
-        <p>{confirmReceived}</p>
-        </div>
-    );
+                <input 
+                    id="add-ingr-row-btn"
+                    type="button" 
+                    value="+" 
+                    onClick={(event) => handleAddRow(event, ingredientListRows, setIngredientListRows)}
+                />
+
+                <input 
+                    id="subtract-ingr-row-btn"
+                    type="button" 
+                    value="-" 
+                    onClick={(event) => handleSubtractRow(event, setFormData, ingredientListRows, setIngredientListRows)}
+                />
+
+                <CuisineTypeTable
+                    formData={formData}
+                    setFormData={setFormData}/>
+
+                <input type="submit" value="Add Recipe"/>
+            </form>
+            <p>{confirmReceived}</p>
+            </div>
+        );
+    
 }
 
 export default FormPage;
