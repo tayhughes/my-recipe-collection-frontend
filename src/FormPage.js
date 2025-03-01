@@ -1,11 +1,7 @@
 import React, { useState } from "react";
-import './FormPage.css';
+import './styles/FormPage.css';
+import {SERVER_IP_ADDRESS, SERVER_PORT} from './ServerConfigs.js';
 
-
-const SERVER_IP_ADDRESS = 'http://192.168.1.168';
-//const SERVER_IP_ADDRESS = 'http://192.168.0.13';
-//const SERVER_IP_ADDRESS = 'http://10.1.10.212';
-const SERVER_PORT = '3001';
 const POST_REQ_PATH = '/submit-data-form';
 const SERVER_ADDRESS = `${SERVER_IP_ADDRESS}:${SERVER_PORT}${POST_REQ_PATH}`;
 
@@ -94,9 +90,14 @@ const handleSubmit = (event, setConfirmReceived, formData, setFormData) => {
             console.log("Form submitted successfully:", data);
             setConfirmReceived(data.message);
         })
+        .then((data) => {
+            while(data.message !== "true"){
+            };
+            window.location.reload();})
         .catch((error) => {
             console.error("Error submitting form:", error);
-        });
+        })
+        // .finally(window.location.reload());
 
         setFormData({
             food_name: "",
