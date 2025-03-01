@@ -1,0 +1,151 @@
+:root {
+    --black: #000000ce;
+    --blue: #4040b4;
+    --highlighter-yellow: #ffff006d;
+    --heading-blue: #2e2e6d;
+    --webpage-blue: #5b80bb;
+    --white: rgb(255, 255, 255);
+
+}
+
+form {
+    border: 1px solid var(--blue);
+    margin: 10px;
+    padding: 10px;
+    width: 800px;
+    text-align: center;
+}
+
+label {
+    display: block;
+    width: auto;
+    padding: 0 10px;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    text-align: left;
+    font-weight: bold;
+}
+
+input {
+    display: block;
+    border: 2px solid var(--black);
+    border-radius: 10px;
+    margin: 10px;
+    width: 220px;
+}
+
+input[type="submit"] {
+    display: block;
+    border: 1px solid var(--black);
+    width: 150px;
+    margin-left: 580px;
+    background-color: var(--webpage-blue);
+    padding: 5px;
+    margin-top: 30px;
+    color: var(--white);
+}
+
+/* The Title/Name of the Recipe Field */
+
+input#food-name{
+    border: 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--heading-blue);
+    font-size: 21px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    margin-bottom: 15px;
+}
+
+input#food-name:active {
+    border-bottom: 1px solid var(--heading-blue);
+}
+
+input#food-name::placeholder{
+    background-color: var(--highlighter-yellow);
+    height: fit-content;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+input#food-name#text {
+    width: fit-content;
+}
+
+p.recipe-form-line-break {
+    width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: 1px solid var(--heading-blue);
+}
+
+/* Add Ingredient and Instruction Row areas */
+
+div.list-of-items input[type="text"] {
+    border: 0;
+    border-radius: 5px;
+    width: 650px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    color: var(--black);
+}
+
+div.list-of-items input[type="text"]:active {
+    border-bottom: 1px solid var(--heading-blue);
+}
+
+div.list-of-items input[type="text"]::placeholder{
+    background-color: var(--highlighter-yellow);
+    height: fit-content;
+    padding-top: 3px;
+    padding-bottom: 3px;
+}
+
+div#add-ingr-row-button-container, div#add-instruct-row-button-container{
+    width: 650px;
+    height: 40px;
+    margin-left: 65px;
+}
+
+input#add-ingr-row-btn, input#add-instr-row-btn {
+    display: block;
+    float: left;
+    width: 50px;
+}
+
+input#subtract-ingr-row-btn, input#subtract-instr-row-btn{
+    display: inline;
+    float: left;
+    width: 50px;
+    margin-right: 150px;
+}
+
+div.list-of-items{
+    margin-left: 65px;
+    float: clear;
+    height: fit-content;
+}
+
+/* This is also for the Cuisines Type */
+
+label.main-ingr-0, label.main-instr-0, label.cuisine-type {
+    display: block;
+    width: 800px;
+    color: var(--heading-blue);
+    font-size: 19px;
+    float: left;
+}
+
+input.add-subtract-row{
+    display: block;
+    float: clear;
+}
+
+div.cuisine-type-container {
+    margin-left: 65px;
+}

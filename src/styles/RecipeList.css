@@ -1,0 +1,133 @@
+:root{
+    --black: black;
+    --blue: #4040b4;
+    --gray: gray;
+    --warning-red: #ff0000;
+    --webpage-blue: #5b80bb;
+}
+
+div#View-Recipe-List-Container {
+    border-right: 2px solid var(--black);
+    width: 345px;
+    height: 80vh;
+    float: left;
+    clear: none;
+    overflow-y: scroll;
+}
+
+h2 {
+    text-align: center;
+}
+
+h2#header-above-table {
+    text-align: center;
+    margin-left: 15px;
+}
+
+div#my-recipe-collection-container {
+    display: block;
+    width: 320px;
+    height: auto;
+    margin: 10px;
+    margin-bottom: 50px;
+    padding: 0;
+    overflow-y: scroll;
+}
+
+div#recipe-entry-container{
+    border: 1px solid var(--black);
+    border-radius: 10px;
+    /* padding: 10px; */
+    padding-bottom: 10px;
+    margin: 8px 10px;
+    width: 300px;
+    height: fit-content;
+}
+
+div#recipe-entry-container h3{
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    margin: 0;
+    padding-left: 20px;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    font-size: 18px;
+    width: auto;
+    color: var(--white);
+    background-color: var(--webpage-blue);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+div#recipe-entry-container p{
+    margin: 0;
+    margin-top: 5px;
+    margin-left: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    width: 280px;
+    height: fit-content;
+    overflow:hidden;
+    text-overflow: ellipsis;
+}
+
+div.recipe-entry-buttons-div {
+    padding: 0;
+    margin-top: 5px;
+    padding-top: 5px;
+    padding-right: 5px;
+    height: 35px;
+    width: fit-content;
+}
+
+h2#Warning-To-Delete {
+    margin: 0;
+    margin-top: 10px;
+    padding:0;
+    font-size: 14px;
+    font-style: italic;
+    color: var(--warning-red);
+}
+
+h2#Warning-To-Delete ~ p{
+    font-size: 12px;
+    font-style: italic;
+    color: var(--warning-red);
+    margin: 0;
+    margin-bottom: 15px;
+    padding: 0;
+    padding-left: 15px;
+}
+
+input#Warning-No-Button, input#Warning-Yes-Button {
+    display: inline-block;
+    margin-top: 10px;
+    margin-left: 20px;
+    width: 40px;
+    height: 20px;
+}
+
+button#View-Recipe-Btn {
+    display: inline;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    margin: 0;
+    margin-left: 20px;
+    font-size: 12px;
+    padding-top: 3px;
+    padding-bottom: 4px;
+    height: 30px;
+}
+
+button#Delete-Icon-Btn {
+    display: block;
+    float: right;
+    border: 1px solid var(--gray);
+    border-radius: 5px;
+    padding-top: 7px;
+    padding-bottom: 3px;
+    margin: 0;
+    margin-left: 5px;
+    background-color: var(--white);
+    height: fit-content;
+}

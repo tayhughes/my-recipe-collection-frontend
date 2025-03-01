@@ -1,0 +1,10 @@
+:root {
+  --blue: #5b5bcd;
+}
+
+h1 {
+  border: 1px solid red;
+  font-size: 24px;
+  color: var(--blue);
+  padding: 10px;
+}
