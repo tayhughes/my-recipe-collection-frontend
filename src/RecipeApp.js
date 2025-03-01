@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+
 import NavigationBar from './NavigationBar';
 import FormPage from './FormPage';
 import RecipeList from './RecipeList';
@@ -8,6 +9,7 @@ import RecipeCard from './RecipeCard';
 function RecipeApp(){
     const [onPage, setOnPage] = useState('');
     const [selectRecipe, setSelectRecipe] = useState(null);
+
     switch(onPage){
         case "":
         case "home":
@@ -16,7 +18,8 @@ function RecipeApp(){
                     <NavigationBar
                     setOnPage={setOnPage}/>
                     <RecipeList
-                        setSelectRecipe={setSelectRecipe}/>
+                        setSelectRecipe={setSelectRecipe}
+                        />
                     <RecipeCard 
                         selectRecipe={selectRecipe}/>
                 </div>
@@ -41,7 +44,7 @@ function RecipeApp(){
             return(
             <p>Error reload page</p>
             );
-    }
+    }//end switch
 }
 
 export default RecipeApp;
