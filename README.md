@@ -39,6 +39,11 @@ const SERVER_PORT = '3001';
 In order to run the front end in your browser you should be able to run 
 
 ```bash
+# You may need to set the following environment variable
+$ export NODE_OPTIONS=--openssl-legacy-provider
+```
+
+```bash
 # This will create an optimized production build
 $ npm run build
 

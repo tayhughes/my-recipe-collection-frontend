@@ -72,6 +72,16 @@ const handleSubtractInstrRow = (event, setFormData, numberOfInstructs, setNumber
 
 const handleSubmit = (event, setConfirmReceived, formData, setFormData) => {
     event.preventDefault(); // Prevent the default form submission behavior
+    // alter the ingredient list with &&&; delimiter
+    for(let indx = 0; indx < (formData.main_ingr.length);indx++){
+        let alteredInput = `${formData.main_ingr[indx]}&&&;`;
+        formData.main_ingr[indx] = alteredInput;
+    }
+    // alter the instruction list with &&&; delimiter
+    for(let indx = 0; indx < (formData.main_instr.length);indx++){
+        let alteredInput = `${formData.main_instr[indx]}&&&;`;
+        formData.main_instr[indx] = alteredInput;
+    }
 
     fetch(SERVER_ADDRESS, {
         method: "POST",
@@ -98,6 +108,8 @@ const handleSubmit = (event, setConfirmReceived, formData, setFormData) => {
             console.error("Error submitting form:", error);
         })
         // .finally(window.location.reload());
+
+        console.log("The form data is: ", formData)
 
         setFormData({
             food_name: "",
