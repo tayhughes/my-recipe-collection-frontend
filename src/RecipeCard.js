@@ -10,8 +10,8 @@ function ListIngredientsOrdered({recipe}){
     for(let i = 0; i < recipe.length; i++){
         let bulletPoint = '';
         for(let j = i; j < recipe.length; j++){
-            if(recipe[j] === ','){
-                i = j;
+            if(recipe[j] === '&' && recipe[j+1] === '&' && recipe[j+2] === '&' && recipe[j+3] === ';'){
+                i = j + 4;
                 break;
             }
             else{
@@ -31,8 +31,8 @@ function ListInstructionsOrdered({recipe}){
     for(let i = 0; i < recipe.length; i++){
         let bulletPoint = '';
         for(let j = i; j < recipe.length; j++){
-            if(recipe[j] === ','){
-                i = j;
+            if(recipe[j] === '&' && recipe[j+1] === '&' && recipe[j+2] === '&' && recipe[j+3] === ';'){
+                i = j + 4;
                 break;
             }
             else{
@@ -79,6 +79,8 @@ function RecipeCard({selectRecipe}){
             <p>Recipe No Longer Exists -- Try refreshing screen</p>
         );
     }
+
+    console.log("The filtered Ingredient is: ", data[0].main_ingredient);
 
     return(
         <div id="Recipe-Card-Page-Container">
